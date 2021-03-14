@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './DroppableBox.module.css';
+import React from "react";
+import styles from "./DroppableBox.module.css";
 
-import { JiraItem } from '@models/index';
+import { JiraItem } from "models/index";
 
 export interface DroppableBoxProps {
   jiraItems?: JiraItem[];
