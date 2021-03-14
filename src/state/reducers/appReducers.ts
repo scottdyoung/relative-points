@@ -1,10 +1,10 @@
 import { ADD_BULK_JIRA_ITEMS, ADD_JIRA_ITEM, AppActionsTypes } from "../actions/actions";
-import { AppState, initialState } from "../appState";
+import { JiraState, initialState } from "../appState";
 
 export function jiraItemReducer(
-  state: AppState = initialState,
+  state: JiraState = initialState,
   action: AppActionsTypes
-): AppState {
+): JiraState {
   switch (action.type) {
     case ADD_JIRA_ITEM:
       return {

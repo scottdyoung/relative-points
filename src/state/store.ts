@@ -4,7 +4,7 @@ import { jiraItemReducer } from "./reducers/appReducers";
 
 export const store = configureStore({
   reducer: combineReducers({
-    jiraItem: jiraItemReducer
+    jira: jiraItemReducer
   })
 });
 

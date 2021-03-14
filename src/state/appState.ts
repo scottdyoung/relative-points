@@ -1,9 +1,13 @@
 import { JiraItem } from "models/JiraItem";
 
-export interface AppState {
+export interface JiraState {
   jiraItems: JiraItem[];
 }
 
-export const initialState: AppState = {
-  jiraItems: []
+export const initialState: JiraState = {
+  jiraItems: [
+    {
+      title: "Foo Title"
+    }
+  ]
 };
