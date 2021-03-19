@@ -1,41 +1,38 @@
 import React from "react";
+import { useDrop } from "react-dnd";
+import { useDispatch } from "react-redux";
 import styles from "./DroppableBox.module.css";
 
+import { moveJiraItemAction } from "state";
 import { ItemTypes, JiraItem } from "models";
 import DraggableJiraItem from "container/DraggableJiraItem/DraggableJiraItem";
-import { useDrop } from "react-dnd";
 
 export interface DroppableBoxProps {
+  columnId: number | undefined;
   jiraItems?: JiraItem[];
-  x?: number;
-  y?: number;
 }
 
-const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, x, y, children }) => {
+const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, columnId, children }) => {
+  const dispatch = useDispatch();
+
+  function moveJiraItem(jiraItem: JiraItem): void {
+    dispatch(moveJiraItemAction({
+      ...jiraItem,
+      columnId
+    }));
+  }
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.JIRA_ITEM,
-    drop: () => console.log("HERE"),
+    drop: moveJiraItem,
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
-  }), [x, y]);
+  }));
 
   return (
     <div ref={drop} className={styles.DroppableBox}>
-      {isOver && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            zIndex: 1,
-            opacity: 0.5,
-            backgroundColor: 'yellow',
-          }}
-        />
-      )}
+      {isOver && <div className={styles.overlay} />}
       <div>
         {(jiraItems || []).map((jiraItem: JiraItem, index: number) => {
           return <DraggableJiraItem key={index} jiraItem={jiraItem}></DraggableJiraItem>

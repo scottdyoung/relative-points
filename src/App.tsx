@@ -5,7 +5,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 import { JiraItem } from "models";
-import { selectUnsortedJiraItems } from "state";
+import { selectSortedJiraItems, selectUnsortedJiraItems } from "state";
 
 import "./App.css";
 import DroppableBox from "./container/DroppableBox/DroppableBox";
@@ -14,19 +14,20 @@ import ItemImport from "components/ItemImport/ItemImport";
 import ItemCreate from "components/ItemCreate/ItemCreate";
 
 function App() {
-  const jiraItems: JiraItem[] = useSelector(selectUnsortedJiraItems);
+  const unsortedJiraItems: JiraItem[] = useSelector(selectUnsortedJiraItems);
+  const sortedJiraItems: JiraItem[] = useSelector(selectSortedJiraItems);
 
   return (
     <DndProvider backend={HTML5Backend}>
       <Box display="flex" flexDirection="row" p={4} flexGrow={1}>
         <Box border={1} p={2} borderRadius={4} marginRight={2}>
-          <DroppableBox jiraItems={jiraItems}>
+          <DroppableBox jiraItems={unsortedJiraItems} columnId={undefined}>
             <ItemCreate></ItemCreate>
             <ItemImport></ItemImport>
           </DroppableBox>
         </Box>
         <Box flexGrow={1} border={1} p={2} borderRadius={4}>
-          <MultiDroppableBoxContainer>
+          <MultiDroppableBoxContainer jiraItems={sortedJiraItems}>
           </MultiDroppableBoxContainer>
         </Box>
       </Box>

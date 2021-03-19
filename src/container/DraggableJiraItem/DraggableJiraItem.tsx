@@ -1,4 +1,3 @@
-import { CSSProperties } from '@material-ui/styles';
 import { ItemTypes, JiraItem } from 'models';
 import React, { memo, useEffect } from 'react';
 import { DragSourceMonitor, useDrag } from 'react-dnd';
@@ -10,23 +9,6 @@ export interface DraggableJiraItemProps {
   id?: string;
   left?: number;
   top?: number;
-}
-
-
-function getStyles(
-  left: number,
-  top: number,
-  isDragging: boolean,
-): CSSProperties {
-  const transform = `translate3d(${left}px, ${top}px, 0)`
-  return {
-    transform,
-    WebkitTransform: transform,
-    // IE fallback: hide the real node using CSS when dragging
-    // because IE will ignore our custom "empty image" drag preview.
-    opacity: isDragging ? 0 : 1,
-    height: isDragging ? 0 : '',
-  }
 }
 
 const DraggableJiraItem: React.FC<DraggableJiraItemProps> = memo(function DraggableBox(
@@ -51,12 +33,7 @@ const DraggableJiraItem: React.FC<DraggableJiraItemProps> = memo(function Dragga
   return (
     <div
       ref={drag}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        fontSize: 25,
-        fontWeight: 'bold',
-        cursor: 'move',
-      }}
+      className={isDragging ? styles.itemDragging : styles.DraggableJiraItem}
       role="DraggableBox"
     >
       { jiraItem?.title}

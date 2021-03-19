@@ -1,1 +1,12 @@
-.DraggableJiraItem {}
+.DraggableJiraItem {
+  font-size: 25;
+  font-weight: bold;
+  cursor: move;
+}
+
+.itemDragging {
+  opacity: 0.5;
+  font-size: 25;
+  font-weight: bold;
+  cursor: move;
+}
