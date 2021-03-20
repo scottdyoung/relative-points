@@ -4,21 +4,21 @@ import { useDispatch } from "react-redux";
 import styles from "./DroppableBox.module.css";
 
 import { moveJiraItemAction } from "state";
-import { ItemTypes, JiraItem } from "models";
+import { Column, ItemTypes, JiraItem } from "models";
 import DraggableJiraItem from "container/DraggableJiraItem/DraggableJiraItem";
 
 export interface DroppableBoxProps {
-  columnId: number | undefined;
+  column: Column | undefined;
   jiraItems?: JiraItem[];
 }
 
-const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, columnId, children }) => {
+const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, column, children }) => {
   const dispatch = useDispatch();
 
   function moveJiraItem(jiraItem: JiraItem): void {
     dispatch(moveJiraItemAction({
       ...jiraItem,
-      columnId
+      columnId: column ? column.id : undefined
     }));
   }
 

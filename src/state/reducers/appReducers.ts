@@ -18,14 +18,17 @@ export function jiraItemReducer(
   switch (action.type) {
     case ADD_JIRA_ITEM:
       return {
+        ...state,
         jiraItems: [...state.jiraItems, action.payload]
       };
     case ADD_BULK_JIRA_ITEMS:
       return {
+        ...state,
         jiraItems: [...state.jiraItems, ...action.payload]
       };
     case MOVE_JIRA_ITEM:
       return {
+        ...state,
         jiraItems: updateJiraItem(action.payload, state.jiraItems)
       }
     default:

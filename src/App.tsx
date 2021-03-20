@@ -21,7 +21,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <Box display="flex" flexDirection="row" p={4} flexGrow={1}>
         <Box border={1} p={2} borderRadius={4} marginRight={2}>
-          <DroppableBox jiraItems={unsortedJiraItems} columnId={undefined}>
+          <DroppableBox jiraItems={unsortedJiraItems} column={undefined}>
             <ItemCreate></ItemCreate>
             <ItemImport></ItemImport>
           </DroppableBox>

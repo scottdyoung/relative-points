@@ -1,7 +1,9 @@
+import { Column } from "models";
 import { JiraItem } from "models/JiraItem";
 
 export interface JiraState {
   jiraItems: JiraItem[];
+  columns: Column[];
 }
 
 export const initialState: JiraState = {
@@ -17,6 +19,11 @@ export const initialState: JiraState = {
     },
     {
       title: "Foo Title 4"
+    }
+  ],
+  columns: [
+    {
+      id: "FOO-ID-1"
     }
   ]
 };

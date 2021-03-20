@@ -1,4 +1,4 @@
 export interface JiraItem {
     title: string;
-    columnId?: number;
+    columnId?: string | number;
 }
