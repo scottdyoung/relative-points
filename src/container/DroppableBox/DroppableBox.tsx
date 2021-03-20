@@ -24,7 +24,10 @@ const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, column, children
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.JIRA_ITEM,
-    drop: moveJiraItem,
+    drop: (jiraItem: JiraItem) => {
+      console.log('IN DROP', column);
+      moveJiraItem(jiraItem);
+    },
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
