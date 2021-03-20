@@ -17,8 +17,8 @@ const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, column, children
 
   function moveJiraItem(jiraItem: JiraItem): void {
     dispatch(moveJiraItemAction({
-      ...jiraItem,
-      columnId: column ? column.id : undefined
+      jiraItem,
+      columnId: column?.id
     }));
   }
 

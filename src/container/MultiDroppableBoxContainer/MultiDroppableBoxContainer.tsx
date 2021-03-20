@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { selectColumns } from "state";
 import { Box } from "@material-ui/core";
@@ -15,22 +15,21 @@ export interface MultiDroppableBoxContainerProps {
 
 const MultiDroppableBoxContainer: React.FC<MultiDroppableBoxContainerProps> = ({ jiraItems }) => {
   const columns: Column[] = useSelector(selectColumns);
-  console.log('COLUMNS', columns);
   return (
     <div className={styles.MultiDroppableBoxContainer}>
       <Box className={styles.newDropTarget}>
         <DroppableNewColumn></DroppableNewColumn>
       </Box>
       {
-        columns.map((column: Column) => (
-          <>
+        columns.map((column: Column, index: number) => (
+          <Fragment key={index}>
             <Box flex={1}>
               <DroppableBox jiraItems={jiraItems} column={column}></DroppableBox>
             </Box>
             <Box className={styles.newDropTarget}>
               <DroppableNewColumn></DroppableNewColumn>
             </Box>
-          </>
+          </Fragment>
         ))
       }
     </div>

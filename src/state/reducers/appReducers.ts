@@ -1,14 +1,12 @@
-import { JiraItem } from "models";
+import { MoveItemPayload, ItemToColumn } from "models";
 import { ADD_BULK_JIRA_ITEMS, ADD_JIRA_ITEM, AppActionsTypes, MOVE_JIRA_ITEM } from "../actions/actions";
 import { JiraState, initialState } from "../appState";
 
-function updateJiraItem(jiraItem: JiraItem, jiraItems: JiraItem[]): JiraItem[] {
-  return jiraItems.map((item: JiraItem) => {
-    if (item.title === jiraItem.title) {
-      return jiraItem;
-    }
-    return item;
-  });
+function updateItemToColumn(moveItemPayload: MoveItemPayload, itemToColumn: ItemToColumn): ItemToColumn {
+  return {
+    ...itemToColumn,
+    [moveItemPayload.jiraItem.id]: moveItemPayload.columnId
+  };
 }
 
 export function jiraItemReducer(
@@ -29,7 +27,7 @@ export function jiraItemReducer(
     case MOVE_JIRA_ITEM:
       return {
         ...state,
-        jiraItems: updateJiraItem(action.payload, state.jiraItems)
+        itemToColumn: updateItemToColumn(action.payload, state.itemToColumn)
       }
     default:
       return state;

@@ -5,10 +5,9 @@ import styles from "./DroppableNewColumn.module.css";
 
 import { moveJiraItemAction } from "state";
 import { ItemTypes, JiraItem } from "models";
-import { Box } from "@material-ui/core";
 
 export interface DroppableNewColumnProps {
-  columnId?: number | undefined;
+  columnId?: string | undefined;
 }
 
 const DroppableNewColumn: React.FC<DroppableNewColumnProps> = ({ columnId }) => {
@@ -16,7 +15,7 @@ const DroppableNewColumn: React.FC<DroppableNewColumnProps> = ({ columnId }) => 
 
   function moveJiraItem(jiraItem: JiraItem): void {
     dispatch(moveJiraItemAction({
-      ...jiraItem,
+      jiraItem,
       columnId
     }));
   }

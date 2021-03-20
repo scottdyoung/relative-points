@@ -1,4 +1,5 @@
 import { JiraItem } from "models/JiraItem";
+import { MoveItemPayload } from "models";
 
 export const ADD_JIRA_ITEM = "ADD_JIRA_ITEM";
 export const ADD_BULK_JIRA_ITEMS = "ADD_BULK_JIRA_ITEMS";
@@ -16,7 +17,7 @@ interface AddBulkJiraAction {
 
 interface MoveJiraItemAction {
   type: typeof MOVE_JIRA_ITEM;
-  payload: JiraItem;
+  payload: MoveItemPayload;
 }
 
 export type AppActionsTypes = AddJiraItemAction | AddBulkJiraAction | MoveJiraItemAction;
@@ -35,9 +36,9 @@ export function addBulkJiraAction(jiraItems: JiraItem[]): AppActionsTypes {
   };
 }
 
-export function moveJiraItemAction(jiraItem: JiraItem): AppActionsTypes {
+export function moveJiraItemAction(payload: MoveItemPayload): AppActionsTypes {
   return {
     type: MOVE_JIRA_ITEM,
-    payload: jiraItem
+    payload
   };
 }
