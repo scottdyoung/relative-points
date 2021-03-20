@@ -1,0 +1,19 @@
+.DroppableNewColumn {
+  position: relative;
+  align-items: center;
+  display: flex;
+  padding: 0px 1em;
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.5;
+  background-color: #77ffa5;
+}

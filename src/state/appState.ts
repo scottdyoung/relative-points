@@ -7,7 +7,16 @@ export interface JiraState {
 export const initialState: JiraState = {
   jiraItems: [
     {
-      title: "Foo Title"
+      title: "Foo Title 1"
+    },
+    {
+      title: "Foo Title 2"
+    },
+    {
+      title: "Foo Title 3"
+    },
+    {
+      title: "Foo Title 4"
     }
   ]
 };
