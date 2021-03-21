@@ -3,6 +3,7 @@ import React, { memo, useEffect } from 'react';
 import { DragSourceMonitor, useDrag } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import styles from './DraggableJiraItem.module.css';
+import JiraItemDisplay from 'components/JiraItemDisplay/JiraItemDisplay';
 
 export interface DraggableJiraItemProps {
   jiraItem: JiraItem;
@@ -36,7 +37,7 @@ const DraggableJiraItem: React.FC<DraggableJiraItemProps> = memo(function Dragga
       className={isDragging ? styles.itemDragging : styles.DraggableJiraItem}
       role="DraggableBox"
     >
-      { jiraItem?.title}
+      <JiraItemDisplay jiraItem={jiraItem}></JiraItemDisplay>
     </div>
   )
 })

@@ -6,6 +6,7 @@ import styles from "./DroppableBox.module.css";
 import { moveJiraItemAction, AppActionsTypes } from "state";
 import { Column, ItemTypes, JiraItem } from "models";
 import DraggableJiraItem from "container/DraggableJiraItem/DraggableJiraItem";
+import { Box } from "@material-ui/core";
 
 export interface DroppableBoxProps {
   column: Column | undefined;
@@ -37,7 +38,11 @@ const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, column, children
       {isOver && <div className={styles.overlay} />}
       <div>
         {(jiraItems || []).map((jiraItem: JiraItem, index: number) => {
-          return <DraggableJiraItem key={index} jiraItem={jiraItem}></DraggableJiraItem>
+          return (
+            <Box key={index} marginLeft={2} marginRight={2} marginBottom={2}>
+              <DraggableJiraItem jiraItem={jiraItem}></DraggableJiraItem>
+            </Box>
+          );
         })}
       </div>
       {children}
