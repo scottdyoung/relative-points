@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
 import styles from "./DroppableBox.module.css";
 
-import { moveJiraItemAction } from "state";
+import { moveJiraItemAction, AppActionsTypes } from "state";
 import { Column, ItemTypes, JiraItem } from "models";
 import DraggableJiraItem from "container/DraggableJiraItem/DraggableJiraItem";
 
@@ -13,7 +13,7 @@ export interface DroppableBoxProps {
 }
 
 const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, column, children }) => {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<AppActionsTypes> = useDispatch();
 
   function moveJiraItem(jiraItem: JiraItem): void {
     dispatch(moveJiraItemAction({
@@ -25,7 +25,6 @@ const DroppableBox: React.FC<DroppableBoxProps> = ({ jiraItems, column, children
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.JIRA_ITEM,
     drop: (jiraItem: JiraItem) => {
-      console.log('IN DROP', column);
       moveJiraItem(jiraItem);
     },
     collect: monitor => ({

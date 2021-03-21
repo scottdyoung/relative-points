@@ -1,13 +1,16 @@
-import React, { RefObject } from 'react'
+import React, { RefObject, Dispatch } from 'react'
+import { useDispatch } from 'react-redux';
 import { CSVReader } from 'react-papaparse'
 import { IconButton } from '@material-ui/core';
 import NoteAdd from '@material-ui/icons/NoteAdd'
-import { JiraItem, createFromCsvFile, CsvData } from 'models';
 
+import { AppActionsTypes, addBulkJiraAction } from 'state';
+import { JiraItem, createFromCsvFile, CsvData } from 'models';
 
 const buttonRef: RefObject<CSVReader> = React.createRef();
 
 const ItemImport: React.FC = () => {
+  const dispatch: Dispatch<AppActionsTypes> = useDispatch();
 
   function handleOpenDialog(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     if (buttonRef.current) {
@@ -17,7 +20,7 @@ const ItemImport: React.FC = () => {
 
   function handleOnFileLoad(csvFile: CsvData[]): void {
     const jiraItems: JiraItem[] = createFromCsvFile(csvFile);
-    console.log(jiraItems);
+    dispatch(addBulkJiraAction(jiraItems));
   }
 
   return (

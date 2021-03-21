@@ -36,7 +36,7 @@ export function jiraItemReducer(
     case ADD_BULK_JIRA_ITEMS:
       return {
         ...state,
-        jiraItems: [...state.jiraItems, ...action.payload]
+        jiraItems: [...action.payload]
       };
     case MOVE_JIRA_ITEM:
       const itemToColumn: ItemToColumn = updateItemToColumn(action.payload, state.itemToColumn);
