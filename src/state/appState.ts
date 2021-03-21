@@ -1,5 +1,4 @@
-import { Column, ItemToColumn } from "models";
-import { JiraItem } from "models/JiraItem";
+import { Column, JiraItem, ItemToColumn, createNewColumn } from "models";
 
 export interface JiraState {
   jiraItems: JiraItem[];
@@ -11,25 +10,27 @@ export const initialState: JiraState = {
   jiraItems: [
     {
       id: "id-1",
+      key: '1',
       title: "Foo Title 1"
     },
     {
       id: "id-2",
+      key: '2',
       title: "Foo Title 2"
     },
     {
       id: "id-3",
+      key: '3',
       title: "Foo Title 3"
     },
     {
       id: "id-4",
+      key: '4',
       title: "Foo Title 4"
     }
   ],
   columns: [
-    {
-      id: "FOO-ID-1"
-    }
+    createNewColumn()
   ],
   itemToColumn: {}
 };
