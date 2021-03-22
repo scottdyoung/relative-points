@@ -18,7 +18,9 @@ export interface JiraItem {
 
 export function createFromCsvFile(fileData: CsvData[]): JiraItem[] {
   const keyToIndex: KeyToIndex = getKeyToIndexes(fileData[0].data);
-  return fileData.slice(1).map((csvData: CsvData) => createFromCsv(csvData.data, keyToIndex));
+  return fileData.slice(1)
+    .map((csvData: CsvData) => createFromCsv(csvData.data, keyToIndex))
+    .filter((jiraItem: JiraItem) => jiraItem.id);
 }
 
 function createFromCsv(csvData: string[], keyToIndex: KeyToIndex): JiraItem {

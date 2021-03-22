@@ -8,6 +8,7 @@ import { JiraItem } from "models";
 import { selectSortedJiraItems, selectUnsortedJiraItems } from "state";
 
 import "./App.css";
+import styles from "./App.module.css";
 import DroppableBox from "./container/DroppableBox/DroppableBox";
 import MultiDroppableBoxContainer from "./container/MultiDroppableBoxContainer/MultiDroppableBoxContainer";
 import ItemImport from "components/ItemImport/ItemImport";
@@ -19,21 +20,21 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <Box display="flex" flexDirection="row" p={4} flexGrow={1}>
-        <Box display="flex" flexDirection="column" border={1} p={2} borderRadius={4} marginRight={2}>
-          <Box display="flex" flexDirection="row" flexGrow={0}>
+      <Box className={styles.RootContainer}>
+        <Box className={styles.UnsortedContainer}>
+          <Box className={styles.CreateNewContainer}>
             <ItemCreate></ItemCreate>
             <ItemImport></ItemImport>
           </Box>
           <Box marginBottom={2}>
             <Divider />
           </Box>
-          <Box display="flex" flexDirection="row" flexGrow={1}>
+          <Box className={styles.UnsortedItemsContainer}>
             <DroppableBox jiraItems={unsortedJiraItems} column={undefined}>
             </DroppableBox>
           </Box>
         </Box>
-        <Box flexGrow={1} border={1} p={2} borderRadius={4}>
+        <Box className={styles.SortedContainer}>
           <MultiDroppableBoxContainer jiraItems={sortedJiraItems}>
           </MultiDroppableBoxContainer>
         </Box>
