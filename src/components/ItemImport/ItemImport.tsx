@@ -2,7 +2,7 @@ import React, { RefObject, Dispatch } from 'react'
 import { useDispatch } from 'react-redux';
 import { CSVReader } from 'react-papaparse'
 import { IconButton } from '@material-ui/core';
-import NoteAdd from '@material-ui/icons/NoteAdd'
+import NoteAdd from '@material-ui/icons/NoteAdd';
 
 import { AppActionsTypes, addBulkJiraAction } from 'state';
 import { JiraItem, createFromCsvFile, CsvData } from 'models';

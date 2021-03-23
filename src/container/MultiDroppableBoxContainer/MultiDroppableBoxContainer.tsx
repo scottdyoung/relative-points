@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { selectColumns, selectItemToColumn } from "state";
-import { Box } from "@material-ui/core";
+import { Box, TextField, Divider } from "@material-ui/core";
 
 import { Column, JiraItem, ItemToColumn } from "models";
 
@@ -28,8 +28,20 @@ const MultiDroppableBoxContainer: React.FC<MultiDroppableBoxContainerProps> = ({
       {
         columns.map((column: Column, index: number) => (
           <Fragment key={column.id}>
-            <Box flex={1}>
-              <DroppableBox jiraItems={getItemsForColumn(column)} column={column}></DroppableBox>
+            <Box flex={1} display="flex" flexDirection="column">
+              <Box flex={0} textAlign="center">
+                <TextField
+                  label="Story Points"
+                  variant="outlined"
+                  type="number"
+                  inputProps={{ min: 0, style: { textAlign: 'center' } }} />
+              </Box>
+              <Box flex={0} marginTop={2} marginBottom={2}>
+                <Divider />
+              </Box>
+              <Box flex={1}>
+                <DroppableBox jiraItems={getItemsForColumn(column)} column={column}></DroppableBox>
+              </Box>
             </Box>
             <Box className={styles.newDropTarget}>
               <DroppableNewColumn index={index + 1}></DroppableNewColumn>

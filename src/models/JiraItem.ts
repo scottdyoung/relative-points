@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 import { CsvData } from "./CsvData";
 
 const JIRA_KEY_MAP: { [key: string]: keyof JiraItem } = {
@@ -14,6 +16,21 @@ export interface JiraItem {
   title: string;
   key: string;
   id: string;
+}
+
+export function createDefaultJiraItem(): JiraItem {
+  return {
+    id: v4(),
+    key: '',
+    title: ''
+  };
+}
+
+export function createNewJiraItem(jiraItem: Partial<JiraItem>): JiraItem {
+  return {
+    ...createDefaultJiraItem(),
+    ...jiraItem
+  };
 }
 
 export function createFromCsvFile(fileData: CsvData[]): JiraItem[] {
