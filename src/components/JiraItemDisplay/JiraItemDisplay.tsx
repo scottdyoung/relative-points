@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './JiraItemDisplay.module.css';
 import { JiraItem } from 'models';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
 
 interface JiraItemDisplayProps {
   jiraItem: JiraItem;
@@ -15,11 +15,13 @@ const JiraItemDisplay: React.FC<JiraItemDisplayProps> = ({ jiraItem }) => (
       <Typography variant="caption" component="h6">
         {jiraItem?.key}
       </Typography>
-      <Typography variant="body2" component="p">
-        {jiraItem?.title.length > MAX_LENGTH
-          ? jiraItem?.title.substring(0, MAX_LENGTH) + '...'
-          : jiraItem?.title}
-      </Typography>
+      <Tooltip title={jiraItem.description || ''}>
+        <Typography variant="body2" component="p">
+          {jiraItem?.title.length > MAX_LENGTH
+            ? jiraItem?.title.substring(0, MAX_LENGTH) + '...'
+            : jiraItem?.title}
+        </Typography>
+      </Tooltip>
     </CardContent>
   </Card>
 );

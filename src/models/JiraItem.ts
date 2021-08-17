@@ -16,13 +16,15 @@ export interface JiraItem {
   title: string;
   key: string;
   id: string;
+  description: string;
 }
 
 export function createDefaultJiraItem(): JiraItem {
   return {
     id: v4(),
     key: '',
-    title: ''
+    title: '',
+    description: ''
   };
 }
 

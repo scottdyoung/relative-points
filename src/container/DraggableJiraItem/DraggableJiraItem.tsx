@@ -29,13 +29,12 @@ const DraggableJiraItem: React.FC<DraggableJiraItemProps> = memo(function Dragga
 
   useEffect(() => {
     preview(getEmptyImage(), { captureDraggingState: true })
-  }, [])
+  }, [preview])
 
   return (
     <div
       ref={drag}
       className={isDragging ? styles.itemDragging : styles.DraggableJiraItem}
-      role="DraggableBox"
     >
       <JiraItemDisplay jiraItem={jiraItem}></JiraItemDisplay>
     </div>
