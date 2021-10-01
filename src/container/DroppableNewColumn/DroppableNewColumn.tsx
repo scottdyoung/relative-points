@@ -26,7 +26,7 @@ const DroppableNewColumn: React.FC<DroppableNewColumnProps> = ({ index }) => {
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
-  }));
+  }), [index]);
 
   return (
     <div ref={drop} className={styles.DroppableNewColumn}>
