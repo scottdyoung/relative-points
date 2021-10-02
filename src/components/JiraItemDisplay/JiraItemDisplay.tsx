@@ -15,7 +15,7 @@ const JiraItemDisplay: React.FC<JiraItemDisplayProps> = ({ jiraItem }) => (
       <Typography variant="caption" component="h6">
         {jiraItem?.key}
       </Typography>
-      <Tooltip title={jiraItem.description || ''}>
+      <Tooltip title={jiraItem.title || ''}>
         <Typography variant="body2" component="p">
           {jiraItem?.title.length > MAX_LENGTH
             ? jiraItem?.title.substring(0, MAX_LENGTH) + '...'
